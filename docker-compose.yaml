@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  backend:
+    container_name: metis_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8801:3000
+    depends_on:
+      mysql:
+          condition: service_healthy
+          
+  mysql:
+      container_name: metis_mysql
+      build:
+        context: .
+        dockerfile: ./db/Dockerfile
+      environment:
+        - MYSQL_ROOT_PASSWORD=demo5566
+      volumes:
+        - metis_mysql:/var/lib/mysql
+      healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 10s
+        retries: 10
+
+  mysql_adminer:
+      image: adminer
+      restart: always
+      container_name: metis_mysql_adminer
+      ports:
+          - 8899:8080
+      depends_on:
+          mysql:
+              condition: service_healthy
+volumes:
+    metis_mysql:
+        name: metis_mysql
