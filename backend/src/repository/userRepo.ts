@@ -1,4 +1,4 @@
-import { User } from "../model/user";
+import { User } from "../model/userModel";
 import { getRepository } from "typeorm";
 
 export function getUsers() {

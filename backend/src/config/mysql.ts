@@ -2,11 +2,7 @@ import { ConnectionOptions } from "typeorm";
 
 const config: ConnectionOptions = {
   type: "mysql",
-  port: 3306,
-  // host: 'metis_mysql',
-  // username: 'root',
-  // password: 'demo5566',
-  // database: 'metis_db',
+  port: Number(process.env.MYSQL_PORT),
   host: process.env.MYSQL_HOST,
   username: process.env.MYSQL_USERNAME,
   password: process.env.MYSQL_PASSWORD,

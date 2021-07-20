@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 class MainRoute {
     constructor() {
-        this.path = '/api';
+        this.path = '';
         this.router = express_1.Router();
     }
     getPrefix() {

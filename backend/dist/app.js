@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const router_1 = require("./routes/router");
 const typeorm_1 = require("typeorm");
 const mysql_1 = require("./config/mysql");
-const user_1 = require("./model/user");
+const userModel_1 = require("./model/userModel");
+const productModel_1 = require("./model/productModel");
 class App {
     constructor() {
         this.app = express();
@@ -26,7 +27,8 @@ class App {
     mysqlSetup() {
         typeorm_1.createConnection(mysql_1.default).then(connection => {
             console.log("Has connected to DB? ", connection.isConnected);
-            let userRepository = connection.getRepository(user_1.User);
+            let userRepository = connection.getRepository(userModel_1.User);
+            let productRepository = connection.getRepository(productModel_1.Product);
         }).catch(error => console.log("TypeORM connection error: ", error));
     }
 }

@@ -1,23 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const userRepo_1 = require("../repository/userRepo");
-class UserController {
+const productRepo_1 = require("../repository/productRepo");
+class ProductController {
     getAll(req, res) {
-        userRepo_1.getUsers().then((result) => {
+        productRepo_1.getProducts().then((result) => {
             console.log("Result id : " + result.id);
             return res.status(200).json(result);
         });
     }
     createOne(req, res) {
         const data = req.body;
-        userRepo_1.createUser(data).then(result => {
+        productRepo_1.createProduct(data).then(result => {
             console.log("Result id : " + result.id);
             return res.status(200).json(result);
         });
     }
     getOne(req, res) {
         const id = req.params.id;
-        userRepo_1.getUser(id).then(result => {
+        productRepo_1.getProduct(id).then(result => {
             if (result)
                 return res.status(200).json(result);
             else
@@ -27,7 +27,7 @@ class UserController {
     updateOne(req, res) {
         const id = req.params.id;
         const data = req.body;
-        userRepo_1.updateUser(id, data).then(result => {
+        productRepo_1.updateProduct(id, data).then(result => {
             if (result)
                 return res.status(200).json(result);
             else
@@ -36,7 +36,7 @@ class UserController {
     }
     deleteOne(req, res) {
         const id = req.params.id;
-        userRepo_1.deleteUser(id).then(result => {
+        productRepo_1.deleteProduct(id).then(result => {
             console.log(result);
             if (result)
                 return res.status(200).json({ msg: 'success' });
@@ -45,5 +45,5 @@ class UserController {
         });
     }
 }
-exports.default = UserController;
-//# sourceMappingURL=userController.js.map
+exports.default = ProductController;
+//# sourceMappingURL=productController.js.map
