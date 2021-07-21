@@ -7,34 +7,24 @@ import config from './config/mysql';
 import { User } from './model/userModel';
 import { Product } from './model/productModel';
 
-class App {
-  public app: express.Application;
+ const App = async () => {
+  let app: express.Application;
+  app = express();
 
-  constructor() {
-    this.app = express();
-    this.config();
-    this.routerSetup();
-    this.mysqlSetup();
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+
+  await createConnection(config).then(connection => {
+    console.log("Has connected to DB? ", connection.isConnected);
+    let userRepository = connection.getRepository(User);
+    let productRepository = connection.getRepository(Product)
+  }).catch(error => console.log("TypeORM connection error: ", error));
+
+  for (const route of router) {
+    app.use(route.getPrefix(), route.getRouter());
   }
 
-  private config(): void {
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: false }));
-  }
-
-  private routerSetup() {
-    for (const route of router) {
-      this.app.use(route.getPrefix(), route.getRouter());
-    }
-  }
-
-  private mysqlSetup() {
-    createConnection(config).then(connection => {
-      console.log("Has connected to DB? ", connection.isConnected);
-      let userRepository = connection.getRepository(User);
-      let productRepository = connection.getRepository(Product)
-    }).catch(error => console.log("TypeORM connection error: ", error));
-  }
+  return app
 }
 
-export default new App().app;
+export default App;

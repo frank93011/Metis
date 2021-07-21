@@ -8,7 +8,7 @@ const config: ConnectionOptions = {
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB,
   entities: [
-    __dirname + "/../model/{*.ts,*.js}"
+    __dirname + "/../model/**/{*.ts,*.js}"
   ],
   synchronize: true,
   logging: false
