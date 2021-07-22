@@ -1,0 +1,8 @@
+pipeline:
+  build:
+    image: node:10-alpine
+    commands:
+      - cd backend
+      - npm install
+      - npm test
+
