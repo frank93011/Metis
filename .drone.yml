@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: default
+ 
+clone:
+  depth: 1
+ 
+steps:
+- name: node
+  image: node:10-alpine
+  commands:
+    - cd backend
+    - npm install
+    - npm run test
+  when:
+    branch:
+      - master
