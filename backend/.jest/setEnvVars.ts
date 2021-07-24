@@ -1,5 +1,5 @@
 process.env.MYSQL_PORT = "3306"
-process.env.MYSQL_HOST = "localhost"
+process.env.MYSQL_HOST = "host.docker.internal"
 process.env.MYSQL_USERNAME = "root"
 process.env.MYSQL_PASSWORD = "demo5566"
 process.env.MYSQL_DB = "metis_db"
