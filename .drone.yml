@@ -14,4 +14,4 @@ steps:
     - npm run test
   when:
     branch:
-      - master
+      - main
