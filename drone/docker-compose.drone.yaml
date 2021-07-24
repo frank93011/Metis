@@ -13,6 +13,7 @@ services:
       - DRONE_SERVER_PROTO=${DRONE_SERVER_PROTO}
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
       - DRONE_USER_CREATE=${DRONE_USER_CREATE}
+      # - DRONE_USER_FILTER=${DRONE_USER_FILTER}
  
       # GitHub Config
       - DRONE_GITHUB_SERVER=https://github.com
