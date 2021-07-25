@@ -31,11 +31,11 @@ steps:
         from_secret: MYSQL_DB
   commands:
   - ls
-  - echo "MYSQL_PORT:" $MYSQL_PORT < ./backend/.env
-  - echo "MYSQL_HOST:" $MYSQL_HOST << ./backend/.env
-  - echo "MYSQL_USERNAME:" $MYSQL_USERNAME << ./backend/.env
-  - echo "MYSQL_PASSWORD:" $MYSQL_PASSWORD << ./backend/.env
-  - echo "MYSQL_DB:" $MYSQL_DB << ./backend/.env
+  - echo "MYSQL_PORT:" $MYSQL_PORT > ./backend/.env
+  - echo "MYSQL_HOST:" $MYSQL_HOST >> ./backend/.env
+  - echo "MYSQL_USERNAME:" $MYSQL_USERNAME >> ./backend/.env
+  - echo "MYSQL_PASSWORD:" $MYSQL_PASSWORD >> ./backend/.env
+  - echo "MYSQL_DB:" $MYSQL_DB >> ./backend/.env
   - cat ./backend/.env
 
 - name: docker build
