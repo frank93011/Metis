@@ -24,5 +24,5 @@ steps:
     password:
       from_secret: DOCKER_PASSWORD
     repo: frank93011/metis
-    context: ./backend
-    # dockerfile: backend/Dockerfile
+    context: backend/
+    dockerfile: backend/Dockerfile
