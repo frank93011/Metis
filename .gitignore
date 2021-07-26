@@ -2,5 +2,7 @@
 
 .env
 node_modules/
-./backend/dist
+backend/dist
 coverage/
+drone/Database
+frontend/build

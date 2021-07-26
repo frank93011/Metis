@@ -13,6 +13,7 @@ class ProductController {
 
   public createOne(req: Request, res: Response) {
     const data: Product = req.body;
+    console.log(data, req.body)
     createProduct(data).then(result => {
       console.log("Result id : " + result.id);
       return res.status(200).json(result);

@@ -13,3 +13,6 @@ dupdate:
 	docker stop metis-backend
 	docker rm metis-backend
 	docker run -d --name metis-backend -p 5000:3000 metis-backend
+dtest:
+	docker build -t metis-backend -f ./backend/Dockerfile.test ./backend
+	docker run -d --name metis-backend -p 5000:3000 metis-backend

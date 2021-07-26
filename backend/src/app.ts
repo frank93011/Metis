@@ -6,10 +6,12 @@ import { createConnection } from 'typeorm';
 import config from './config/mysql';
 import { User } from './model/userModel';
 import { Product } from './model/productModel';
+var cors = require('cors');
 
  const App = async () => {
   let app: express.Application;
   app = express();
+  app.use(cors());
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));

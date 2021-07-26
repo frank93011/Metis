@@ -1,5 +1,5 @@
 import App from "./app";
-const PORT = 3000;
+const PORT = 5000;
 
 App().then((app) => 
   {

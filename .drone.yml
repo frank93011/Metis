@@ -6,16 +6,6 @@ clone:
   depth: 1
  
 steps:
-# - name: node
-#   image: node:10-alpine
-#   commands:
-#     - cd backend
-#     - npm install
-#     - npm run test
-#   when:
-#     branch:
-#       - main
-
 - name: make .env
   image: alpine
   environment:
@@ -38,7 +28,27 @@ steps:
   - echo "MYSQL_DB=" $MYSQL_DB >> ./backend/.env
   - cat ./backend/.env
 
-- name: docker build
+- name: backend-test
+  image: node:10-alpine
+  commands:
+    - cd backend
+    - npm install
+    - npm run test
+  when:
+    branch:
+      - main
+
+- name: frontend-test
+  image: node:10-alpine
+  commands:
+    - cd backend
+    - npm install
+    - npm run test
+  when:
+    branch:
+      - main
+
+- name: docker build backend
   image: plugins/docker
   settings:
     username:
@@ -48,3 +58,14 @@ steps:
     repo: frank93011/metis
     context: backend/
     dockerfile: backend/Dockerfile
+
+- name: docker build frontend
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: DOCKER_USER
+    password:
+      from_secret: DOCKER_PASSWORD
+    repo: frank93011/metis-frontend
+    context: frontend/
+    dockerfile: frontend/Dockerfile

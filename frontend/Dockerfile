@@ -8,8 +8,7 @@ WORKDIR /app
 
 # copy configs to /app folder
 COPY package*.json ./
-COPY tsconfig.json ./
-COPY .env ./
+
 # copy source code to /app/src folder
 COPY src /app/src
 
@@ -17,8 +16,8 @@ COPY src /app/src
 RUN ls -a
 
 RUN npm install
-RUN npm run build
 
-EXPOSE 5000
+EXPOSE 3000
 
-CMD [ "node", "-r", "dotenv/config", "./dist/index.js" ]
+# start app
+CMD ["npm", "start"]
